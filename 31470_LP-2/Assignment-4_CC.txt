@@ -1,0 +1,64 @@
+public class class1 {
+    public integer firstnum {get ; set; }
+    public integer secondnum {get ; set; }
+    public integer result {get ; set; }
+   
+   
+    public void addition()
+    {
+        result=firstnum+ secondnum;
+    }
+   
+    public void subtract()
+    {
+        result=firstnum- secondnum;
+    }
+   
+    public void multiply()
+    {
+        result=firstnum* secondnum;
+    }
+   
+    public void divide()
+    {
+        result=firstnum/ secondnum;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+visualforcepage:
+<apex:page controller="class1">
+    <apex:sectionHeader  title="Calculator" subtitle="Basic calci"/>
+    <apex:form>
+        <apex:pageBlock title="Simple Calculator">
+            <apex:pageBlockButtons>
+                <apex:commandButton value="Addition" action="{!addition}" reRender="res"/>
+                 <apex:commandButton value="Subtraction" action="{!subtract}" reRender="res"/>
+                 <apex:commandButton value="Multiplication" action="{!multiply}" reRender="res"/>
+                 <apex:commandButton value="Division" action="{!divide}" reRender="res"/>
+            </apex:pageBlockButtons>
+           
+            <apex:pageBlockSection title="Calculator">
+                <apex:inputText label="Enter num1" html-placeholder="First Name" value="{!firstnum}"/>
+            <apex:inputText label="Enter num2" html-placeholder="Second Name" value="{!secondnum}"/>
+                <apex:outputText label="Result" value="{!result}" id="res"/>
+            </apex:pageBlockSection>
+           
+        </apex:pageBlock>
+   
+    </apex:form>
+</apex:page>

@@ -1,0 +1,190 @@
+calcuataor.apxc
+
+public class Calculator {
+    public integer firstNumber {get; set; }
+    public integer secondNumber {get; set; }
+    public double number3 {get;set;}
+    public double scientific_answer {get;set;}
+
+
+    public integer result {get; set; }
+    
+    public void Addition(){
+        result = firstNumber + secondNumber;
+    }
+    
+    public void Subtraction(){
+        result = firstNumber - secondNumber;
+    }
+    
+    public void Multiplication(){
+        result = firstNumber * secondNumber;
+    }
+    
+    public void Division(){
+        result = firstNumber / secondNumber;
+    }
+    
+    public void logarithm() {
+        scientific_answer = Math.log(number3);
+     }
+
+}
+
+calcuataorvf.vpf
+
+<apex:page controller="Calculator" >
+    <apex:sectionHeader title="Calculator" subtitle="Basic Calculator"/>
+    <apex:form >
+    <apex:pageBlock title="Simple Calculator">
+        <apex:pageBlockButtons location="bottom">
+        <apex:commandButton value="Addition" action="{!Addition}" reRender="res"/>
+        <apex:commandButton value="Subtraction" action="{!Subtraction}" reRender="res"/>
+        <apex:commandButton value="Multiplication" action="{!Multiplication}" reRender="res"/>
+        <apex:commandButton value="Division" action="{!Division}" reRender="res"/>
+            <apex:commandButton value="Log" action="{!logarithm}" reRender="sres"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection title="Calculator">
+            <apex:inputText label="Enter First Number" html-placeholder="First Number" value="{!firstNumber}"/>
+            <apex:inputText label="Enter Second Number" html-placeholder="Second Number" value="{!secondNumber}"/>
+            <apex:inputText label="Enter Third Number" html-placeholder="Third Number" value="{!number3}"/>
+            <apex:outputText label="Result" value="{!result}" id="res"/>
+            <apex:outputText label="SciResult" value="{!scientific_answer}" id="sres"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+
+scientific Calculator.apxc
+
+public class scical {
+    public String operation {get;set;}
+    public double number1 {get;set;}
+    public double number2 {get;set;}
+    public double number3 {get;set;}
+    public double number4 {get;set;}
+    public double number5;
+    public double answer {get;set;}
+    public double scientific_answer {get;set;}
+    public String answerErr {get;set;}
+    
+    public void compute() {
+        switch on operation {
+            when 'add' {
+                answer = number1 + number2;
+                answerErr = '';
+            }
+            when 'subtract' {
+                answer = number1 - number2;
+                answerErr = '';
+            }
+            when 'multiply' {
+                answer = number1 * number2;
+                answerErr = '';
+            }
+            when 'divide' {
+                if(number2 == 0) {
+                    answer = 0.0;
+                    answerErr = 'Divide by 0 error...';
+                }
+                else {
+                    answer = number1 / number2;
+                }
+            }
+            when 'logarithm' {
+                scientific_answer = Math.log(number3);
+            }
+            when 'power' {
+                scientific_answer = Math.pow(number3, number4);
+            }
+            when 'sin' {
+                number5 = (number3 * 3.14) / 180;
+                scientific_answer = Math.sin(number5);
+            }
+            when 'cos' {
+                number5 = (number3 * 3.14) / 180;
+                scientific_answer = Math.cos(number3);
+            }
+            when 'tan' {
+                number5 = (number3 * 3.14) / 180;
+                scientific_answer = Math.tan(number5);
+            }
+            when 'sec' {
+                number5 = (number3 * 3.14) / 180;
+                scientific_answer = 1 / (Math.cos(number5));
+            }
+            when 'cosec' {
+                number5 = (number3 * 3.14) / 180;
+                scientific_answer = 1 / (Math.sin(number5));
+            }
+            when 'cot' {
+                number5 = (number3 * 3.14) / 180;
+                scientific_answer = 1 / (Math.tan(number5));
+            }
+}
+   }
+}
+
+
+scientific calcuataorvf.vpf
+
+<apex:page controller="scical">
+    <apex:sectionHeader title="Calculator LP2" subtitle="Assignment 3"/>
+    <apex:form >
+        <apex:sectionHeader title="Arithmetic Operations"/>
+        <apex:pageBlock title="Enter numbers">
+            <apex:pageBlockSection >
+            	<apex:pageBlockSectionItem >
+                    <apex:selectRadio value="{!operation}" layout="pageDirection">
+                        <apex:selectOption itemValue="add" itemLabel="Add"/>
+                        <apex:selectOption itemValue="subtract" itemLabel="Subtract"/>
+                        <apex:selectOption itemValue="multiply" itemLabel="Multiply"/>
+                        <apex:selectOption itemValue="divide" itemLabel="Divide"/>
+                    </apex:selectRadio>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>        
+            <apex:pageBlockSection >
+            	<apex:inputText label="Enter first number:" value="{!number1}"/>
+                <apex:inputText label="Enter second number:" value="{!number2}"/>
+                <apex:outputText label="Answer" value="{!answer}"/>
+                <apex:outputText label="Answer Errors" value="{!answerErr}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+            	<apex:commandButton value="Compute" action="{!compute}" status="sts"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:form >
+        <apex:sectionHeader title="Scientific Operations"/>
+        <apex:pageBlock title="Enter numbers">
+        	<apex:pageBlockSection >
+            	<apex:pageBlockSectionItem >
+                	<apex:selectRadio value="{!operation}" layout="pageDirection">
+                        <apex:selectOption itemValue="logarithm" itemLabel="Logarithm"/>
+                        <apex:selectOption itemValue="power" itemLabel="Power"/>
+                        <apex:selectOption itemValue="sin" itemLabel="Sin"/>
+                        <apex:selectOption itemValue="cos" itemLabel="Cos"/>
+                        <apex:selectOption itemValue="tan" itemLabel="Tan"/>
+                        <apex:selectOption itemValue="cosec" itemLabel="Cosec"/>
+                        <apex:selectOption itemValue="sec" itemLabel="Sec"/>
+                        <apex:selectOption itemValue="cot" itemLabel="Cot"/>
+                    </apex:selectRadio>
+                </apex:pageBlockSectionItem>
+                <apex:outputText label="For logarithm and trignometric operations enter the first number only, for power operation enter first number as base and second as power. "/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+                <apex:inputText label="Enter first number" value="{!number3}"/>
+                <apex:inputText label="Enter second number" value="{!number4}"/>
+                <apex:outputText label="Answer" value="{!scientific_answer}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+            	<apex:commandButton value="Compute" action="{!compute}" status="sts"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+
+
+

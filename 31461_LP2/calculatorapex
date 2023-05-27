@@ -1,0 +1,28 @@
+public class Calculator {
+    public integer firstNum {get; set;}
+    public integer secondNum {get; set;}
+    public integer result{get;set;}
+   
+    public void Addition()
+    {
+        result=firstNum + secondNum;
+    }
+   
+    public void Subtraction()
+    {
+        result=firstNum - secondNum;
+    }
+   
+    public void Multiplication()
+    {
+        result=firstNum * secondNum;
+    }
+   
+    public void Division()
+    {
+        result=firstNum + secondNum;
+    }
+   
+   
+
+}
