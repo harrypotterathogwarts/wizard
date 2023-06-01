@@ -1,0 +1,48 @@
+from nltk.tokenize import word_tokenize
+from nltk import pos_tag
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+text = open("sample.txt").read()
+text
+
+tokens = word_tokenize(text)
+print(tokens)
+
+postags = pos_tag(tokens)
+print(postags)
+
+stop_words = set(stopwords.words('english'))
+print(stop_words)
+
+lst = []
+for words in tokens:
+    if words not in stop_words:
+        lst.append(words)
+print(lst)
+
+stemmer = PorterStemmer()
+stemlst = []
+for words in lst:
+    stemlst.append([words, stemmer.stem(words)])
+print(stemlst)
+
+wl = WordNetLemmatizer()
+wlst =[]
+for words in li:
+    wlst.append([words, wl.lemmatize(words])
+print(wlst)
+
+fre = dict()
+for word in li:
+    if words in fre:
+        fre[words]+=1
+    else:
+        fre[word]=1
+print(fre)
+
+tfidf = TfidfVectorizer()
+result = tfidf.fit_transform(li)
+prnt(result)

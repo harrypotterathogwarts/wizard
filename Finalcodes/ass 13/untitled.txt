@@ -1,0 +1,12 @@
+start-dfs.sh
+jps
+start-yarn.sh
+gedit sample.txt
+
+jps
+hdfs dfs -mkdir /sample
+hadoop fs -put /(sample.txt path) /sample2
+yarn jar ___ wordcount /sample2 /output
+
+hdfs dfs -ls /output
+hdfs dfs -cat /(second outfile name)

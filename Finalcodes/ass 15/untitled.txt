@@ -1,0 +1,12 @@
+1. source ~/.profile
+2. ls -l/opt/spark
+3. start-master.sh
+4. stop-master.sh
+5. start-master.sh
+6. spark-shell
+7. scala> var lines = sc.textFile("input.txt")
+8. var words = lines.flatMap(_.split(" "))
+9. var wordsfreq = words.map((_, 1))
+10. var wordscount = wordsfreq.reduceByKey(_+_)
+11. wordscount.saveAsTextFile("op")
+12. wordscount.foreach(println)
